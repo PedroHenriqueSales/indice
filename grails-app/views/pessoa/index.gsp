@@ -15,8 +15,8 @@
               function drawChart() {
                 var data1 = google.visualization.arrayToDataTable([
                   ['Task', 'Total'],
-                  ['Homem',     11],
-                  ['Mulher',     4]
+                  ['Homem',     ${numHomens}],
+                  ['Mulher',    ${numMulheres}]
                 ]);
 
                 var options1 = {
@@ -29,8 +29,8 @@
 
                 var data2 = google.visualization.arrayToDataTable([
                   ['Task', 'Total'],
-                  ['Maior de 18',     9],
-                  ['Menor de 18',      6]
+                  ['Maior de 18',     ${maiorDeDezoito}],
+                  ['Menor de 18',      ${menorDeDezoito}]
                 ]);
 
                 var options2 = {
@@ -43,9 +43,9 @@
 
                 var data3 = google.visualization.arrayToDataTable([
                   ['Task', 'Total'],
-                  ['Casaodo(a)',     6],
-                  ['Solteiro(a)',      7],
-                  ['Viúvo(a)',  2],
+                  ['Casaodo(a)',     ${numCasados}],
+                  ['Solteiro(a)',     ${numSolteiros}],
+                  ['Viúvo(a)',      ${numViuvos}],
                 ]);
 
                 var options3 = {

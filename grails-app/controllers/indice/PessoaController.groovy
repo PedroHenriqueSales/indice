@@ -10,19 +10,48 @@ class PessoaController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Pessoa.list(params), model:[pessoaCount: Pessoa.count()]
+        def numMulheres = 0
+        def numHomens = 0
+        def numSolteiros = 0
+        def numCasados = 0
+        def numViuvos = 0
+        def maiorDeDezoito = 0
+        def menorDeDezoito = 0
+
+        def pessoas = Pessoa.list()
+        for(Pessoa pessoa:pessoas){
+            if(pessoa.sexo == 'Masculino'){
+                numHomens ++
+            }else{
+                numMulheres ++      
+            }
+
+            switch(pessoa.estadoCivil) {
+                case 'Viuvo':
+                    numViuvos++
+                    break
+                case 'Solteiro':
+                    numSolteiros++
+                    break
+                case 'Casado':
+                    numCasados++
+                    break
+            }
+
+            if(pessoa.idade.toInteger() >= 18){
+                maiorDeDezoito++
+            }else{
+                menorDeDezoito++
+            }
+
+        }
+        [numMulheres: numMulheres]
+        respond Pessoa.list(params), model:[pessoaCount: Pessoa.count(), numViuvos:numViuvos, numMulheres:numMulheres, numHomens:numHomens, numSolteiros:numSolteiros, 
+        numCasados:numCasados, maiorDeDezoito:maiorDeDezoito, menorDeDezoito:menorDeDezoito]
     }
 
-    def numSexoFeminino() {
-        pessoas = Pessoa.list()
-        mulheres
-        for(Pessoa pessoa:pessoas){
-            if(pessoa.sexo == 'Feminino'){
-                mulheres.add(pessoa)
-            }
-        }
-        return mulheres
-    }
+
+
 
     def show(Pessoa pessoa) {
         respond pessoa

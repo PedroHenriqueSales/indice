@@ -8,6 +8,7 @@ hibernate:
 
 dataSource:
     pooled: true
+    dbCreate: update
     jmxExport: true
     url: jdbc:mysql://localhost:3306/indicedatabase
     driverClassName: com.mysql.jdbc.Driver
